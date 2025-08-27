@@ -1,13 +1,13 @@
 import cv2
 import numpy as np
-import hands_detection as htm
+import HandTrackingModule as htm
 import math
 from ctypes import cast, POINTER
 from comtypes import CLSCTX_ALL
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 
 CAMERA_INDEX = 0
-BAR_POSITION = (50, 150)  # x, y start point
+BAR_POSITION = (50, 40)  # x, y start point
 BAR_WIDTH = 50
 BAR_HEIGHT = 290
 BAR_COLOR = (250, 0, 0)   # Light gray
@@ -34,7 +34,7 @@ while True:
         break
 
     img = detector.findHands(img , draw= False)
-    lmList, bbox = detector.findPosition(img, draw=False)
+    lmList = detector.findPosition(img, draw=False)
 
     if len(lmList) != 0:
         # Thumb and index tip
